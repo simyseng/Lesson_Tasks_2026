@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let tasks: [String] = ["Hello", "World", "SST"]
+    let tasks: [String] = ["Hello", "World", "Stanley"]
     
     var body: some View {
         List {
