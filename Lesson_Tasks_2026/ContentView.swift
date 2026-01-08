@@ -2,18 +2,22 @@
 //  ContentView.swift
 //  Lesson_Tasks_2026
 //
-//  Created by Stanley Sim on 8/1/26.
+//  Created by Stanley Sim on 7/1/26.
+// S2-07
+// 8 Jan 2026
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    
+    let tasks: [String] = ["Hello", "World", "SST"]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            ForEach(tasks, id: \.self) { task in
+                Text(task)
+            }
         }
         .padding()
     }
