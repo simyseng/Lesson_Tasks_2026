@@ -11,15 +11,17 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let tasks: [String] = ["Hello", "World", "Stanley"]
+    let tasks: [String] = ["Maths Homework", "Science Homework", "Practise running"]
     
     var body: some View {
-        List {
-            ForEach(tasks, id: \.self) { task in
-                Text(task)
+        NavigationStack {
+            List {
+                ForEach(tasks, id: \.self) { task in
+                    Text(task)
+                }
             }
+            .navigationTitle("Tasks")
         }
-        .padding()
     }
 }
 
