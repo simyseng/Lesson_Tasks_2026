@@ -8,17 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let tasks: [Task] = [
+        Task(title: "Maths Homework", category: "School"),
+        Task(title: "Science Homework", category: "School"),
+        Task(title: "Practise running", category: "Exercise")
+    ]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(tasks) { task in
+                    VStack(alignment: .leading) {
+                        Text(task.title)
+                            .font(.headline)
+                        Text(task.category)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .navigationTitle("Tasks")
         }
-        .padding()
     }
 }
-
 #Preview {
     ContentView()
 }
+
+
