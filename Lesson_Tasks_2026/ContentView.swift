@@ -15,15 +15,13 @@ struct ContentView: View {
     ]
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(taskTitles, id: \.self) { task in
+            List(taskTitles, id: \.self) { task in
                     Text(task)
-                }
-            }
-            .navigationTitle("Tasks")
+                }.navigationTitle("Tasks")
+            }   
         }
         
-    }
+    
 }
 
 #Preview {
