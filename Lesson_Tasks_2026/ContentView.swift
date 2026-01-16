@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var taskTitles: [String] = [
-        "Maths Homework",
-        "Pack PE Attire",
-        "Practise guitar"
+    @State private var tasks: [Task] = [
+        Task(title:"Maths Homework", category:"School"),
+        Task(title:"Science Homework", category:"School"),
+        Task(title:"Buy newspaper", category:"Home")
     ]
     var body: some View {
         NavigationStack {
-            List(taskTitles, id: \.self) { task in
-                    Text(task)
+            List(tasks) { task in
+                VStack(alignment: .leading) {
+                    Text(task.title)
+                        .font(.headline)
+                    Text(task.category)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
                 }.navigationTitle("Tasks")
             }   
         }
-        
-    
 }
 
 #Preview {
