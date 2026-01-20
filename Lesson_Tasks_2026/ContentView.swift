@@ -12,25 +12,25 @@ import SwiftUI
 struct ContentView: View {
     
     let tasks: [Task] = [
-        Task(title: "Maths Homework", category: "School"),
-        Task(title: "Lunch Shopping", category: "Personal"),
-        Task(title: "Science Project", category: "School")
+        Task(title: "Maths Homework", category: "School", imageName: "book.fill"),
+        Task(title: "Lunch Shopping", category: "Personal", imageName: "circle.fill"),
+        Task(title: "Science Project", category: "School", imageName: "book.fill")
     ]
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(tasks) { task in
+            List(tasks) { task in
+                NavigationLink (destination: TaskDetailView(task: task)) {
                     VStack (alignment: .leading) {
                         Text(task.title)
                             .font(.headline)
                         Text(task.category)
                             .font(.caption)
-                            .foregroundStyle(.secondary)           
+                            .foregroundStyle(.secondary)
                     }
                 }
-            }
-            .navigationTitle("Tasks")
+                
+            }.navigationTitle("Tasks")
         }
     }
 }
