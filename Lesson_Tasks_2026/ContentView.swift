@@ -18,14 +18,15 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(tasks) { task in
-                    VStack(alignment: .leading) {
-                        Text(task.title)
-                            .font(.headline)
-                        Text(task.category)
-                            .font(.caption)
-                            .foregroundStyle(Color.secondary)
+                    NavigationLink(destination: TaskDetailView(task: task)) {
+                        VStack(alignment: .leading) {
+                            Text(task.title)
+                                .font(.headline)
+                            Text(task.category)
+                                .font(.caption)
+                                .foregroundStyle(Color.secondary)
+                        }
                     }
-                    
                 }
             }.navigationTitle("Tasks")
         }
