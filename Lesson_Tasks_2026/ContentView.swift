@@ -17,8 +17,8 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(tasks) { task in
+            List(tasks) { task in
+                NavigationLink (destination: TaskDetailView(task: task)){
                     VStack(alignment: .leading) {
                         Text(task.title)
                             .font(.headline)
@@ -27,9 +27,10 @@ struct ContentView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-            }
-            .navigationTitle("Tasks")
+            }.navigationTitle("Tasks")
         }
+            
+        
     }
 }
 #Preview {
