@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var tasks: [Task] = [
         Task(title:"Finish Maths Homework", category: "School"),
         Task(title:"Pack PE Attire", category: "School"),
-        Task(title:"Practise Piano", category: "Personal"),
+        Task(title:"Practise Piano", category: "Personal")
     ]
     
     var body: some View {
