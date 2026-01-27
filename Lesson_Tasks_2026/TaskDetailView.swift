@@ -15,11 +15,15 @@ struct TaskDetailView: View {
             .font(.largeTitle)
         Text(task.category)
             .font(.title)
-        Spacer()
+        Text(task.dueDate.formatted(
+            date: .long,
+            time: .omitted
+        ))
+        Text(task.isCompleted ? "✅" : "⭕️")
     }
 }
 
 #Preview {
-    TaskDetailView(task: Task(title:"Maths HW", category: "School"))
+    TaskDetailView(task: Task(title:"Maths HW", category: "School", dueDate: Date(), isCompleted: false))
 }
 
