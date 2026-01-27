@@ -16,15 +16,15 @@ struct TaskDetailView: View {
                 .font(.largeTitle)
             Text(task.category)
                 .font(.title)
-            Image(systemName: task.imageName)
-                .resizable()
-                .frame(width: 100, height: 100)
-                .foregroundStyle(.blue)
+            Text(task.dueDate.formatted(date:.abbreviated, time:.omitted))
+            Text(task.isCompleted ? "✅" : "⭕️")
         }
     }
 }
-
- #Preview {
-     TaskDetailView(task: Task(title: "Maths HW", category: "School", imageName: "book.fill"))
+/*
+ struct TaskDetailView_Previews: PreviewProvider {
+ static var previews: some View {
+ TaskDetailView(task: Task(title: "Maths HW", category: "School", dueDate: Date(), isCompleted: false))
  }
- 
+ }
+ */
