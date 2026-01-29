@@ -16,16 +16,21 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List(tasks) { task in
-                VStack(alignment: .leading) {
-                    Text(task.title)
-                        .font(.headline)
-                    Text(task.category)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                NavigationLink {
+                    TaskDetailView(task: task)
+                } label: {
+                    VStack(alignment: .leading) {
+                        Text(task.title)
+                            .font(.headline)
+                        Text(task.category)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-                }.navigationTitle("Tasks")
-            }   
+                
+            }.navigationTitle("Tasks")
         }
+    }
 }
 
 #Preview {
