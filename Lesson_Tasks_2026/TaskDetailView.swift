@@ -13,9 +13,11 @@ struct TaskDetailView: View {
     var body: some View {
         Text(task.title)
         Text(task.category)
+        Text(task.dueDate.formatted(date: .long, time: .omitted))
+        Text(task.isCompleted ? "Completed" : "Not Completed")
     }
 }
 
 #Preview {
-    TaskDetailView(task: Task(title:"Maths Homework", category:"School"))
+    TaskDetailView(task: Task(title:"Maths Homework", category:"School", dueDate: Date(), isCompleted: false))
 }
