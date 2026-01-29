@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let tasks: [Task] = [
+    var tasks: [Task] = [
         Task(title: "Maths Homework", category: "School", dueDate: Date(), isCompleted: false),
         Task(title: "Lunch Shopping", category: "Personal", dueDate: Date(), isCompleted: false),
         Task(title: "Science Project", category: "School", dueDate: Date(), isCompleted: true)
@@ -19,8 +19,8 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List(tasks) { task in
-                NavigationLink (destination: TaskDetailView(task: task)) {
+            List($tasks) { $task in
+                NavigationLink (destination: TaskDetailView(task: $task)) {
                     HStack {
                         Text(task.isCompleted ? "✅" : "⭕️")
                         VStack (alignment: .leading) {
