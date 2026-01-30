@@ -17,6 +17,8 @@ struct TaskDetailView: View {
             Text(task.category)
                 .font(.title)
             Spacer()
+            Text(task.dueDate.formatted(date: .abbreviated, time: .omitted)).font(.largeTitle)
+            Text(task.isCompleted ? "Completed" : "Not Completed").font(.largeTitle)
         }
         
     }
