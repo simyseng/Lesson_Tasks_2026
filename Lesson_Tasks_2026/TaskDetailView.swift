@@ -23,6 +23,6 @@ struct TaskDetailView: View {
 }
 
 #Preview {
-    TaskDetailView(task: Task(title: "Maths Homework", category: "School"))
+    TaskDetailView(task: Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false))
 }
 

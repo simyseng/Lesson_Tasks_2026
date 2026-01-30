@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     
     let tasks: [Task] = [
-        Task(title: "Maths Homework", category: "School"),
-        Task(title: "Science Homework", category: "School"),
-        Task(title: "Practise running", category: "Exercise")
+        Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false),
+        Task(title: "Science Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: .now) ?? .now, isCompleted: false),
+        Task(title: "Practise running", category: "Exercise", dueDate: Calendar.current.date(byAdding: .day, value: 3, to: .now) ?? .now, isCompleted: true)
     ]
     
     var body: some View {
