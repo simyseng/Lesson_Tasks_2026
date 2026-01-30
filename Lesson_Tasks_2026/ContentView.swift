@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var tasks: [Task] = [
-        Task(name: "Finish Maths Homework", category: "School"),
-        Task(name: "Pack PE attire", category: "School"),
-        Task(name: "Practise piano", category: "CCA")
+        Task(name: "Finish Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false),
+        Task(name: "Pack PE attire", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: .now) ?? .now, isCompleted: false),
+        Task(name: "Practise piano", category: "CCA", dueDate: Calendar.current.date(byAdding: .day, value: 3, to: .now) ?? .now, isCompleted: true)
     ]
     
     var body: some View {
