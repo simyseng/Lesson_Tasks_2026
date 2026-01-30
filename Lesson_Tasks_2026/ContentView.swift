@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var tasks: [Task] = [
-        Task(title:"Maths Homework", category:"School"),
-        Task(title:"Science Homework", category:"School"),
-        Task(title:"Buy newspaper", category:"Home")
+        Task(title:"Maths Homework", category:"School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false),
+        Task(title:"Science Homework", category:"School", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: .now) ?? .now, isCompleted: false),
+        Task(title:"Buy newspaper", category:"Home", dueDate: Calendar.current.date(byAdding: .day, value: 5, to: .now) ?? .now, isCompleted: true)
     ]
     var body: some View {
         NavigationStack {
@@ -19,13 +19,17 @@ struct ContentView: View {
                 NavigationLink {
                     TaskDetailView(task: task)
                 } label: {
-                    VStack(alignment: .leading) {
-                        Text(task.title)
-                            .font(.headline)
-                        Text(task.category)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                    HStack {
+                        Text(task.isCompleted ? "✅" : "⭕️")
+                        VStack(alignment: .leading) {
+                            Text(task.title)
+                                .font(.headline)
+                            Text("\(task.category) • Due \(task.dueDate.formatted(date: .abbreviated, time: .omitted)) ")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
                     }
+                    
                 }
                 
             }.navigationTitle("Tasks")
