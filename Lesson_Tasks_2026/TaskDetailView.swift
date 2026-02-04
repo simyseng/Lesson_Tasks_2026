@@ -28,11 +28,6 @@ struct TaskDetailView: View {
                 Toggle("Completed", isOn: $task.isCompleted)
             }
         }
-        
-        
-            
-            
-        
     }
 }
 
