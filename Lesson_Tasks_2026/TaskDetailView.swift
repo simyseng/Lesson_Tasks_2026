@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct TaskDetailView: View {
-    let task: Task
+    @Binding var task: Task
+    let categories = ["School", "CCA", "Personal"]
     
     var body: some View {
+        Form {
+            Section("Task Information") {
+                TextField("Title", text: $task.title)
+                Picker("Category", selection: $task.category) {
+                    ForEach (categories, id: \.self) {c in
+                        Text(c).tag(c)
+                    }
+                }
+            }
+        }
         VStack {
             Text(task.title)
                 .font(.largeTitle)
@@ -25,6 +36,6 @@ struct TaskDetailView: View {
 }
 
 #Preview {
-    TaskDetailView(task: Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false))
+    TaskDetailView(task: .constant(Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false)))
 }
 

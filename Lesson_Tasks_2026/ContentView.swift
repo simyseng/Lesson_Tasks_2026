@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let tasks: [Task] = [
+    @State var tasks: [Task] = [
         Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false),
         Task(title: "Science Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: .now) ?? .now, isCompleted: false),
         Task(title: "Practise running", category: "Exercise", dueDate: Calendar.current.date(byAdding: .day, value: 3, to: .now) ?? .now, isCompleted: true)
@@ -18,8 +18,8 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List(tasks) { task in
-                NavigationLink (destination: TaskDetailView(task: task)){
+            List($tasks) { $task in
+                NavigationLink (destination: TaskDetailView(task: $task)){
                     HStack {
                         Text(task.isCompleted ? "✅" : "⭕️")
                         VStack(alignment: .leading) {
