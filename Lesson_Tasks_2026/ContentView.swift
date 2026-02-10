@@ -17,8 +17,8 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(tasks) { task in
-                    NavigationLink (destination: TaskDetailView(task: task)) {
+                ForEach($tasks) { $task in
+                    NavigationLink (destination: TaskDetailView(task: $task)) {
                         HStack {
                             Text(task.isCompleted ? "✅" : "⭕️")
                             VStack(alignment: .leading) {
