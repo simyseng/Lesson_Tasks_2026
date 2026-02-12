@@ -20,18 +20,12 @@ struct TaskDetailView: View {
                         Text(c).tag(c)
                     }
                 }
+                DatePicker("Due Date", selection: $task.dueDate, displayedComponents: .date)
+            }
+            Section("Status") {
+                Toggle("Completed", isOn: $task.isCompleted)
             }
         }
-        VStack {
-            Text(task.title)
-                .font(.largeTitle)
-            Text(task.category)
-                .font(.title)
-            Spacer()
-            Text(task.dueDate.formatted(date: .abbreviated, time: .omitted)).font(.largeTitle)
-            Text(task.isCompleted ? "Completed" : "Not Completed").font(.largeTitle)
-        }
-        
     }
 }
 
