@@ -8,16 +8,29 @@
 import SwiftUI
 
 struct TaskDetailView: View {
-    let task: Task
+    @Binding var task: Task
+    
+    let categories = ["School", "CCA", "Personal"]
     
     var body: some View {
-        Text(task.title)
-        Text(task.category)
-        Text(task.dueDate.formatted(date: .long, time: .omitted))
-        Text(task.isCompleted ? "Completed" : "Not Completed")
+        Form {
+            Section("Task Information") {
+                TextField("Title", text: $task.title)
+                Picker("Category", selection: $task.category) {
+                    ForEach(categories, id: \.self) { c in
+                        Text(c).tag(c)
+                    }
+                }
+                DatePicker("Due Date", selection: $task.dueDate, displayedComponents: .date)
+                
+                Section("Status") {
+                    Toggle("Completion", isOn: $task.isCompleted)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    TaskDetailView(task: Task(title:"Maths Homework", category:"School", dueDate: Date(), isCompleted: false))
+    TaskDetailView(task: .constant(Task(title:"Maths Homework", category:"School", dueDate: Date(), isCompleted: false)))
 }

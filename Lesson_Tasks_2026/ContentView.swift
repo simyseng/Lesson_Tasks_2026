@@ -15,9 +15,9 @@ struct ContentView: View {
     ]
     var body: some View {
         NavigationStack {
-            List(tasks) { task in
+            List($tasks) { $task in
                 NavigationLink {
-                    TaskDetailView(task: task)
+                    TaskDetailView(task: $task)
                 } label: {
                     HStack {
                         Text(task.isCompleted ? "✅" : "⭕️")
