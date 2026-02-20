@@ -16,7 +16,7 @@ struct TaskRow: View {
                 .font(.title3)
                 .foregroundStyle(task.isCompleted ? .green : .gray)
                 .onTapGesture {
-                    $task.isCompleted.toggle()
+                    task.isCompleted.toggle()
                 }
             VStack(alignment: .leading) {
                 Text(task.title)
