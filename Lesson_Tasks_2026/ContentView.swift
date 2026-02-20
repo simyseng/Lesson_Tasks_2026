@@ -19,7 +19,7 @@ struct ContentView: View {
                 NavigationLink {
                     TaskDetailView(task: $task)
                 } label: {
-                    TaskRow(task: task)
+                    TaskRow(task: $task)
                 }
                 
             }.navigationTitle("Tasks")

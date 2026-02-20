@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskRow: View {
-    var task: Task
+    @Binding var task: Task
 
     var body: some View {
         HStack {
@@ -32,5 +32,5 @@ struct TaskRow: View {
 }
 
 #Preview {
-    TaskRow(task: Task(title:"Maths Homework", category:"School", dueDate: Date(), isCompleted: false))
+    TaskRow(task: .constant(Task(title:"Maths Homework", category:"School", dueDate: Date(), isCompleted: false)))
 }
