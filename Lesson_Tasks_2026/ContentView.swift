@@ -18,15 +18,39 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List($tasks) { $task in
-                NavigationLink (destination: TaskDetailView(task: $task)){
-                    TaskRow(task: task)
-                    
+            List {
+                ForEach($tasks) { $task in
+                    NavigationLink (destination: TaskDetailView(task: $task)){
+                        TaskRow(task: task)
+                        
+                    }
                 }
-            }.navigationTitle("Tasks")
+                .onDelete(perform: deleteTask)
+            }
+            .navigationTitle("Tasks")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        addTask()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
+                }
+            }
         }
-            
+    }
+    
+    func addTask() {
+        let newTask = Task.newDefaultTask(number: tasks.count + 1)
         
+        tasks.append(newTask)
+    }
+    
+    func deleteTask(indexSet: IndexSet) {
+        tasks.remove(atOffsets: indexSet)
     }
 }
 #Preview {
