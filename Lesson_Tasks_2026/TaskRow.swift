@@ -30,3 +30,4 @@ struct TaskRow: View {
 #Preview {
     TaskRow(task: .constant(Task(name: "Finish Maths Homework", category: "School", dueDate: Date(), isCompleted: true)))
 }
+
