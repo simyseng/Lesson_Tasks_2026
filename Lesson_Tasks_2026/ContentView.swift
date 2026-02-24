@@ -19,17 +19,7 @@ struct ContentView: View {
             List {
                 ForEach($tasks) { $task in
                     NavigationLink(destination: TaskDetailView(task: $task)) {
-                        HStack {
-                            Text(task.isCompleted ? "✅" : "❌")
-                            VStack(alignment: .leading) {
-                                Text(task.title)
-                                    .font(.headline)
-                                Text("\(task.category) • \(task.dueDate.formatted(date: .abbreviated, time: .omitted))")
-                                    .font(.caption)
-                                    .foregroundStyle(Color.secondary)
-                            }
-                        }
-                        
+                        TaskRow(task: $task)
                     }
                 }
             }.navigationTitle("Tasks")
