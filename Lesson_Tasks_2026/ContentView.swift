@@ -22,8 +22,31 @@ struct ContentView: View {
                         TaskRow(task: $task)
                     }
                 }
-            }.navigationTitle("Tasks")
+                .onDelete(perform: deleteTask)
+            }
+            .navigationTitle("Tasks")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        addTask()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
+                }
+            }
         }
+    }
+    
+    private func addTask() {
+        let newTask = Task.newDefaultTask(number: tasks.count + 1)
+        tasks.append(newTask)
+    }
+    
+    private func deleteTask(indexSet: IndexSet) {
+        tasks.remove(atOffsets: indexSet)
     }
 }
 
