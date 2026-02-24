@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tasks: [Task] = [
-        Task(title:"Finish Maths Homework", category: "School", dueDate: Date(), isCompleted: true),
-        Task(title:"Pack PE Attire", category: "School", dueDate: Date(), isCompleted: false),
-        Task(title:"Practise Piano", category: "Personal", dueDate: Date(), isCompleted: false)
-    ]
+    @State private var tasks: [Task] = []
     
     var body: some View {
         NavigationStack {
@@ -22,8 +18,31 @@ struct ContentView: View {
                         TaskRow(task: $task)
                     }
                 }
-            }.navigationTitle("Tasks")
+                .onDelete(perform: deleteTask)
+            }
+            .navigationTitle("Tasks")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        addTask()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
+                }
+            }
         }
+    }
+    
+    private func addTask() {
+        let newTask = Task.newDefaultTask(number: tasks.count + 1)
+        tasks.append(newTask)
+    }
+    
+    private func deleteTask(offsets: IndexSet) {
+        tasks.remove(atOffsets: offsets)
     }
 }
 
