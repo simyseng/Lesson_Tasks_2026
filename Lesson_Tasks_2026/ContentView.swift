@@ -25,8 +25,23 @@ struct ContentView: View {
                     
                 }
                 
-            }.navigationTitle("Tasks")
+            }
+            .navigationTitle("Tasks")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        addTask()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
         }
+    }
+    private func addTask() {
+        let newTask = Task.newDefaultTask(tasks.count + 1)
+        
+        tasks.append(newTask)
     }
 }
 
