@@ -21,7 +21,7 @@ struct ContentView: View {
         NavigationStack {
             List($tasks) { $task in
                 NavigationLink (destination: TaskDetailView(task: $task)) {
-                    TaskRow(task: task)
+                    TaskRow(task: $task)
                     
                 }
                 
