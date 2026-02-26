@@ -8,22 +8,43 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tasks: [Task] = [
-        Task(title:"Maths Homework", category:"School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false),
-        Task(title:"Science Homework", category:"School", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: .now) ?? .now, isCompleted: false),
-        Task(title:"Buy newspaper", category:"Home", dueDate: Calendar.current.date(byAdding: .day, value: 5, to: .now) ?? .now, isCompleted: true)
-    ]
+    @State private var tasks: [Task] = []
     var body: some View {
         NavigationStack {
-            List($tasks) { $task in
-                NavigationLink {
-                    TaskDetailView(task: $task)
-                } label: {
-                    TaskRow(task: $task)
-                }
+            List {
+                ForEach($tasks) { $task in
+                    NavigationLink {
+                        TaskDetailView(task: $task)
+                    } label: {
+                        TaskRow(task: $task)
+                    }
+                }.onDelete(perform: deleteTask)
                 
-            }.navigationTitle("Tasks")
+                
+            }
+            .navigationTitle("Tasks")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        addTask()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
+                }
+            }
         }
+    }
+    
+    private func addTask() {
+        let newTask = Task.newDefaultTask(number: tasks.count + 1)
+        
+        tasks.append(newTask)
+    }
+    private func deleteTask(indexSet: IndexSet) {
+        tasks.remove(atOffsets: indexSet)
     }
 }
 

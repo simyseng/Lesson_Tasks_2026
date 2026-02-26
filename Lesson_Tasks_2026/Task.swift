@@ -13,4 +13,11 @@ struct Task: Identifiable {
     var category: String
     var dueDate: Date
     var isCompleted: Bool
+    
+    static func newDefaultTask(number: Int) -> Task {
+        Task(title: "Default Task \(number)",
+        category: "Personal",
+        dueDate: Date(),
+        isCompleted: false)
+    }
 }
