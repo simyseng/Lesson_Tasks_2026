@@ -36,6 +36,12 @@ struct ContentView: View {
                     EditButton()
                 }
             }
+            .onAppear {
+                tasks = TaskStore.load()
+            }
+            .onChange(of: tasks) { _, newValue in
+                TaskStore.save(newValue)
+            }
         }
     }
     
