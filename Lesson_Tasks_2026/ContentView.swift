@@ -10,18 +10,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var tasks: [Task] = [
-        Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false),
-        Task(title: "Science Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: .now) ?? .now, isCompleted: false),
-        Task(title: "Practise running", category: "Exercise", dueDate: Calendar.current.date(byAdding: .day, value: 3, to: .now) ?? .now, isCompleted: true)
-    ]
+    @State var tasks: [Task] = []
     
     var body: some View {
         NavigationStack {
             List {
                 ForEach($tasks) { $task in
                     NavigationLink (destination: TaskDetailView(task: $task)){
-                        TaskRow(task: task)
+                        TaskRow(task: $task)
                         
                     }
                 }

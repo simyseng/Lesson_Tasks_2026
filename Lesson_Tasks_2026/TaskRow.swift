@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct TaskRow: View {
-    @State var task: Task
+    @Binding var task: Task
     
     var body: some View {
         HStack {
             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                 .font(.title3)
                 .foregroundStyle(task.isCompleted ? .green : .gray)
+                .onTapGesture {
+                    task.isCompleted.toggle()
+                }
             
             VStack(alignment: .leading) {
                 Text(task.title)
@@ -30,5 +33,5 @@ struct TaskRow: View {
 }
 
 #Preview {
-    TaskRow(task: Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false))
+    TaskRow(task: .constant(Task(title: "Maths Homework", category: "School", dueDate: Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now, isCompleted: false)))
 }
