@@ -19,8 +19,12 @@ struct ContentView: View {
                         TaskRow(task: $task)
                     }
                 }.onDelete(perform: deleteTask)
-                
-                
+            }
+            .onAppear {
+                tasks = TaskStore.load()
+            }
+            .onChange(of: tasks) { _, newValue in
+                tasks = TaskStore.load()
             }
             .navigationTitle("Tasks")
             .toolbar {
