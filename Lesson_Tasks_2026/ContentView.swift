@@ -23,6 +23,12 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteTask)
             }
+            .onAppear {
+                tasks = TaskStore.load()
+            }
+            .onChange(of: tasks) { _, newValue in
+                TaskStore.save(newValue)
+            }
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
